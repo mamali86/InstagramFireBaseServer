@@ -1,0 +1,6 @@
+framework module Pods_InstagramSampleApp {
+  umbrella header "Pods-InstagramSampleApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
