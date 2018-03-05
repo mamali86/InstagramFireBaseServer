@@ -11,6 +11,26 @@ import Firebase
 
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
+    let haveAnAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        let attributedTitle = NSMutableAttributedString(string: "Have an Account? ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+
+        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)]))
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+    
+        button.addTarget(self, action: #selector(handlePopSignUpScreen), for: .touchUpInside)
+        return button
+    }()
+    
+    
+    @objc func handlePopSignUpScreen() {
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
     
     let addImageButton: UIButton = {
         let button = UIButton(type: .system)
@@ -161,6 +181,10 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewDidLoad()
         view.backgroundColor = .white
         setupviews()
+        
+        
+        view.addSubview(haveAnAccountButton)
+        haveAnAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
       }
     
     

@@ -28,9 +28,6 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         fetchUsers()
     }
     
-    
-    
-    
     fileprivate func setUpNavigationItems() {
         
         let settingsButton = UIButton(type: .system)

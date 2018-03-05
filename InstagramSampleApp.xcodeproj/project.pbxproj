@@ -181,10 +181,9 @@
 		9B0278FC203B5F9100F57783 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9B0278CD203B5DF000F57783 /* SignUpViewController.swift */,
-				9BD90C6A204567A10018E472 /* MainTabBarController.swift */,
+				9BAB221E204D8F43006022E5 /* Login */,
 				9BD90C6C20457D140018E472 /* UserProfileViewController.swift */,
-				9BAB2217204C4DF8006022E5 /* LogInViewController.swift */,
+				9BD90C6A204567A10018E472 /* MainTabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -203,6 +202,15 @@
 				9B0F85F920470CD800662F35 /* UserInfo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9BAB221E204D8F43006022E5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9BAB2217204C4DF8006022E5 /* LogInViewController.swift */,
+				9B0278CD203B5DF000F57783 /* SignUpViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		9BD90C5B203F13480018E472 /* Utils */ = {
