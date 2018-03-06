@@ -30,8 +30,8 @@ class MainTabBarController: UITabBarController {
     
     func setupControllers(){
     let layout = UICollectionViewFlowLayout()
-    let redVC = UserProfileViewController(collectionViewLayout: layout)
-    let NavController = UINavigationController(rootViewController: redVC)
+    let userProfileController = UserProfileViewController(collectionViewLayout: layout)
+    let NavController = UINavigationController(rootViewController: userProfileController)
     tabBar.tintColor = .black
     NavController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
     NavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")

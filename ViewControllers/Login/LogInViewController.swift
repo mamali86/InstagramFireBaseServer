@@ -71,14 +71,16 @@ class LogInViewController: UIViewController {
                 return
             }
             
+            self.dismiss(animated: true, completion: nil)
+            
+            
+            guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
+            mainTabBarController.setupControllers()
+        
             
             self.dismiss(animated: true, completion: nil)
             
         }
-
-        
-        
-        
     }
     
     
@@ -140,7 +142,6 @@ class LogInViewController: UIViewController {
     }
     
     fileprivate func setUpLogin() {
-        
         
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
         stackView.distribution = .fillEqually
