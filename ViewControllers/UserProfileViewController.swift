@@ -38,7 +38,6 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
     }
     
     
-    
     @objc func handleLogOut() {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -50,18 +49,14 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
             } catch let logOutERROR {
                 print("Error Logging Out", logOutERROR)
             }
-//            let LogInController = LogInViewController()
-//            present(LogInController, animated: true, completion: nil)
+            let LogInController = LogInViewController()
+            let navController = UINavigationController(rootViewController: LogInController)
+            self.present(navController, animated: true, completion: nil)
             
         }))
-        
+
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        
         present(alertController, animated: true, completion: nil)
-        
-        
-        
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
