@@ -14,9 +14,9 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     let haveAnAccountButton: UIButton = {
         let button = UIButton(type: .system)
         
-        let attributedTitle = NSMutableAttributedString(string: "Have an Account? ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
 
-        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)]))
+        attributedTitle.append(NSAttributedString(string: "Log In", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)]))
         
         button.setAttributedTitle(attributedTitle, for: .normal)
     
@@ -27,7 +27,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @objc func handlePopSignUpScreen() {
         
-        navigationController?.popViewController(animated: true)
+       _ =  navigationController?.popViewController(animated: true)
     }
     
     
@@ -177,6 +177,12 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        return .lightContent
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
