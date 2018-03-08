@@ -11,12 +11,27 @@ import UIKit
 import Firebase
 
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        let index = viewControllers?.index(of: viewController)
+        
+        if index == 2 {
+            let plusViewController = PlusViewController()
+            let navController = UINavigationController(rootViewController: plusViewController)
+            present(navController, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.delegate = self
+    
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
                 let LogInController = LogInViewController()
