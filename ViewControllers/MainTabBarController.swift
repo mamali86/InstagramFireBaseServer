@@ -52,13 +52,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let profileViewController = setUpNavigationController(image: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected").withRenderingMode(.alwaysOriginal))
         
         
-//
-//    let layout = UICollectionViewFlowLayout()
-//    let userProfileController = UserProfileViewController(collectionViewLayout: layout)
-//    let NavController = UINavigationController(rootViewController: userProfileController)
-//    tabBar.tintColor = .black
-//    NavController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
-//    NavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
     viewControllers = [userProfileController, searchViewController, plusViewControler, likeViewController, profileViewController]
         
         guard let items = tabBar.items else {return}

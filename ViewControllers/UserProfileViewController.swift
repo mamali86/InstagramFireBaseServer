@@ -21,8 +21,6 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         collectionView?.backgroundColor = .white
         collectionView?.register(UserProfileHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-        
-        
         setUpNavigationItems()
         fetchUsers()
     }
