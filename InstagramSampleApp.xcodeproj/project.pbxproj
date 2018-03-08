@@ -23,7 +23,7 @@
 		9BD90C64204071990018E472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BD90C63204071990018E472 /* GoogleService-Info.plist */; };
 		9BD90C6B204567A10018E472 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD90C6A204567A10018E472 /* MainTabBarController.swift */; };
 		9BD90C6D20457D140018E472 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD90C6C20457D140018E472 /* UserProfileViewController.swift */; };
-		9BEA989F20517AD00045FA47 /* PlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA989E20517AD00045FA47 /* PlusViewController.swift */; };
+		9BEA98A120517F2B0045FA47 /* PlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA98A020517F2B0045FA47 /* PlusViewController.swift */; };
 		C8402D82E00DA93F495FDE63 /* Pods_InstagramSampleApp_InstagramSampleAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB5C9D14BCF92A297C9A6F8 /* Pods_InstagramSampleApp_InstagramSampleAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,7 +72,7 @@
 		9BD90C63204071990018E472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9BD90C6A204567A10018E472 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		9BD90C6C20457D140018E472 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
-		9BEA989E20517AD00045FA47 /* PlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusViewController.swift; sourceTree = "<group>"; };
+		9BEA98A020517F2B0045FA47 /* PlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusViewController.swift; sourceTree = "<group>"; };
 		BFF1DEBCB0CFD58ACB5D0AE6 /* Pods-InstagramSampleApp-InstagramSampleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramSampleApp-InstagramSampleAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramSampleApp-InstagramSampleAppUITests/Pods-InstagramSampleApp-InstagramSampleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FE3E4A1A05FACB16753D6858 /* Pods-InstagramSampleApp-InstagramSampleAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramSampleApp-InstagramSampleAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramSampleApp-InstagramSampleAppTests/Pods-InstagramSampleApp-InstagramSampleAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,7 +186,7 @@
 				9BAB221E204D8F43006022E5 /* Login */,
 				9BD90C6C20457D140018E472 /* UserProfileViewController.swift */,
 				9BD90C6A204567A10018E472 /* MainTabBarController.swift */,
-				9BEA989E20517AD00045FA47 /* PlusViewController.swift */,
+				9BEA98A020517F2B0045FA47 /* PlusViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -558,9 +558,9 @@
 				9BD90C6D20457D140018E472 /* UserProfileViewController.swift in Sources */,
 				9BAB2218204C4DF8006022E5 /* LogInViewController.swift in Sources */,
 				9B0278CE203B5DF000F57783 /* SignUpViewController.swift in Sources */,
-				9BEA989F20517AD00045FA47 /* PlusViewController.swift in Sources */,
 				9BD90C6B204567A10018E472 /* MainTabBarController.swift in Sources */,
 				9B0F85FA20470CD800662F35 /* UserInfo.swift in Sources */,
+				9BEA98A120517F2B0045FA47 /* PlusViewController.swift in Sources */,
 				9B0278CC203B5DF000F57783 /* AppDelegate.swift in Sources */,
 				9B0F85F52046F1D600662F35 /* UserProfileHeaderCell.swift in Sources */,
 				9BD90C5D203F15400018E472 /* Extension.swift in Sources */,

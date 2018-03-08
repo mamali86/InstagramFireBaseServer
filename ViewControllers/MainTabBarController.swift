@@ -18,7 +18,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let index = viewControllers?.index(of: viewController)
         
         if index == 2 {
-            let plusViewController = PlusViewController()
+            let plusViewController = PlusViewController(collectionViewLayout: UICollectionViewFlowLayout())
             let navController = UINavigationController(rootViewController: plusViewController)
             present(navController, animated: true, completion: nil)
             return false
