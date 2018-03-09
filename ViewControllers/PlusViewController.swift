@@ -8,22 +8,50 @@
 
 
 import UIKit
+import Photos
 
 class PlusViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout  {
     
     let headerID = "headerID"
     let cellID = "cellID"
-
+    var images = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = .red
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView?.register(imageSelectionCell.self, forCellWithReuseIdentifier: cellID)
         collectionView?.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID)
+        fetchImages()
         setUpNavigationBarItems()
     }
     
     
+    fileprivate func fetchImages() {
+        
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.fetchLimit = 8
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        let imagesAndVideos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        imagesAndVideos.enumerateObjects { (object, count, stop) in
+            
+            let manager = PHImageManager.default()
+            let targetSize = CGSize(width: 350, height: 350)
+            let options = PHImageRequestOptions()
+            options.isSynchronous = true
+            manager.requestImage(for: object, targetSize: targetSize, contentMode: .aspectFit, options: options, resultHandler: { (image,info) in
+                
+                guard let image = image else {return}
+               self.images.append(image)
+                
+            })
+
+            
+        }
+        
+        
+
+        
+    }
     
     fileprivate func setUpNavigationBarItems() {
         
@@ -61,12 +89,14 @@ class PlusViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return images.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
-        cell.backgroundColor = .purple
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! imageSelectionCell
+        let image = self.images[indexPath.item]
+        cell.selectionImage.image = image
+        
         return cell
     }
     
