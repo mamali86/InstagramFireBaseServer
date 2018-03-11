@@ -15,42 +15,64 @@ class PlusViewController: UICollectionViewController, UICollectionViewDelegateFl
     let headerID = "headerID"
     let cellID = "cellID"
     var images = [UIImage]()
+    var objects = [PHAsset]()
+    var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = .red
         collectionView?.register(imageSelectionCell.self, forCellWithReuseIdentifier: cellID)
-        collectionView?.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID)
+        collectionView?.register(imageSelectionHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID)
         fetchImages()
         setUpNavigationBarItems()
     }
     
     
-    fileprivate func fetchImages() {
-        
+    fileprivate func fetchOptions() -> PHFetchOptions {
         let fetchOptions = PHFetchOptions()
         fetchOptions.fetchLimit = 8
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        let imagesAndVideos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        return fetchOptions
+    }
+    
+    
+    fileprivate func fetchImages() {
+        
+        let imagesAndVideos = PHAsset.fetchAssets(with: .image, options: fetchOptions())
+        
+        
+        DispatchQueue.global(qos: .background).async {
+            
+        
         imagesAndVideos.enumerateObjects { (object, count, stop) in
             
             let manager = PHImageManager.default()
-            let targetSize = CGSize(width: 350, height: 350)
+            let targetSize = CGSize(width: 200, height: 200)
             let options = PHImageRequestOptions()
             options.isSynchronous = true
             manager.requestImage(for: object, targetSize: targetSize, contentMode: .aspectFit, options: options, resultHandler: { (image,info) in
                 
                 guard let image = image else {return}
                self.images.append(image)
+                self.objects.append(object)
+                
+                if self.selectedImage == nil {
+                    self.selectedImage = image
+                }
+                
+                
+                if count == imagesAndVideos.count - 1 {
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadData()
+                    }
+                }
+                
                 
             })
 
-            
         }
         
-        
-
-        
+        }
     }
     
     fileprivate func setUpNavigationBarItems() {
@@ -68,12 +90,33 @@ class PlusViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     
     @objc func handleNext() {
-        print("Next")
+        
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath)
-        header.backgroundColor = .yellow
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as! imageSelectionHeader
+        
+        
+        header.topImage.image = selectedImage
+
+        let manager = PHImageManager.default()
+        let targetSize = CGSize(width: 1000, height: 1000)
+        if let selectedImage = selectedImage{
+            if let index = images.index(of: selectedImage) {
+            let selectedHighQualityObject = self.objects[index]
+     
+        
+        
+        manager.requestImage(for: selectedHighQualityObject, targetSize: targetSize, contentMode: .default, options: nil) { (image, info) in
+            
+            header.topImage.image = image
+
+            
+        }
+            }
+        }
+    
         return header
     }
     
@@ -98,6 +141,12 @@ class PlusViewController: UICollectionViewController, UICollectionViewDelegateFl
         cell.selectionImage.image = image
         
         return cell
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedImage = images[indexPath.item]
+        self.collectionView?.reloadData()
     }
     
     
