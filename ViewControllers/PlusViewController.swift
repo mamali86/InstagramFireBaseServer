@@ -91,12 +91,22 @@ class PlusViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     @objc func handleNext() {
         
+        let capationController = captionViewController()
+        capationController.selectedImageCaption = headerRef?.topImage.image
+        navigationController?.pushViewController(capationController, animated: true)
+        
+        
         
     }
+    
+
+    var headerRef: imageSelectionHeader?
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as! imageSelectionHeader
         
+        
+        headerRef.self = header
         
         header.topImage.image = selectedImage
 
@@ -147,6 +157,10 @@ class PlusViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedImage = images[indexPath.item]
         self.collectionView?.reloadData()
+        let indexPath = NSIndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
+     
+        
     }
     
     
