@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 
 class captionViewController: UIViewController {
     
@@ -59,8 +59,34 @@ class captionViewController: UIViewController {
     
      @objc func handleShare(){
         
+        guard let image = self.selectedImageCaption else {return}
+        guard let uploadData = UIImageJPEGRepresentation(image, 0.3) else {return}
+        
+        let filename = NSUUID().uuidString
+        Storage.storage().reference().child(filename).putData(uploadData, metadata: nil) { (metadata, error) in
+            if let err = error {
+                 print("Failed to upload user profile image into db", err)
+            }
+            
+            
+            guard let uid = Auth.auth().currentUser?.uid else {return}
+            guard let captionImage = metadata?.downloadURL()?.absoluteString else {return}
+            print("successfully uploaded profile image", captionImage)
+            
+            let dictionaryValues = ["ImageUrl": captionImage]
+            let values = [uid : dictionaryValues]
+            Database.database().reference().child("Caption").updateChildValues(values, withCompletionBlock: { (err, ref) in
+                if let err = error {
+                    print("Failed to save user info into db", err)
+                    return
+                }
+            })
+        }
+        
+        
+       dismiss(animated: true, completion: nil)
+        
+        
         
     }
-    
-    
 }
