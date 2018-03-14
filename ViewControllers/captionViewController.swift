@@ -59,12 +59,17 @@ class captionViewController: UIViewController {
     
      @objc func handleShare(){
         
+        
+        guard let captionText = self.captionTextView.text, captionTextView.text.count > 0  else {return}
         guard let image = self.selectedImageCaption else {return}
+        navigationItem.rightBarButtonItem?.isEnabled = false
         guard let uploadData = UIImageJPEGRepresentation(image, 0.3) else {return}
         
         let filename = NSUUID().uuidString
         Storage.storage().reference().child(filename).putData(uploadData, metadata: nil) { (metadata, error) in
             if let err = error {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+
                  print("Failed to upload user profile image into db", err)
             }
             
@@ -73,10 +78,11 @@ class captionViewController: UIViewController {
             guard let captionImage = metadata?.downloadURL()?.absoluteString else {return}
             print("successfully uploaded profile image", captionImage)
             
-            let dictionaryValues = ["ImageUrl": captionImage]
+            let dictionaryValues = ["ImageUrl": captionImage, "captionText": captionText, "imageWidth": image.size.width, "imageHeight": image.size.height, "creationDate": Date().timeIntervalSince1970] as [String : Any]
             let values = [uid : dictionaryValues]
             Database.database().reference().child("Caption").updateChildValues(values, withCompletionBlock: { (err, ref) in
                 if let err = error {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = true
                     print("Failed to save user info into db", err)
                     return
                 }
