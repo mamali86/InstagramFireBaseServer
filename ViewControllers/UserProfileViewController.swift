@@ -124,12 +124,13 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
             
             guard let dictionaries = snapshot.value as? [String: Any] else {return}
 
-            print(dictionaries)
+            dictionaries.forEach({ (key,value) in
+                
+                guard let dictionary = value as? [String: Any] else {return}
+                let post = captionPost(dictionary: dictionary)
+                self.posts.append(post)
+            })
             
-//            let imageUrl = dictionary["ImageUrl"] as? String
-            
-            
-//            self.posts.append(captionPost(dictionary: dictionary))
             self.collectionView?.reloadData()
         }
         
