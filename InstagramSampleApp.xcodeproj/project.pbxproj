@@ -21,6 +21,8 @@
 		9B19D6552055511C00D7BCD1 /* imageSelectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B19D6542055511C00D7BCD1 /* imageSelectionHeader.swift */; };
 		9B19D6572056D7E300D7BCD1 /* captionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B19D6562056D7E300D7BCD1 /* captionViewController.swift */; };
 		9B19D6592056E52500D7BCD1 /* constraintUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B19D6582056E52500D7BCD1 /* constraintUIView.swift */; };
+		9B2092FA205D0C6C00DC498D /* captionPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2092F9205D0C6C00DC498D /* captionPost.swift */; };
+		9B2092FC205D179700DC498D /* postCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2092FB205D179700DC498D /* postCell.swift */; };
 		9BAB2218204C4DF8006022E5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAB2217204C4DF8006022E5 /* LogInViewController.swift */; };
 		9BD90C5D203F15400018E472 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD90C5C203F15400018E472 /* Extension.swift */; };
 		9BD90C64204071990018E472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BD90C63204071990018E472 /* GoogleService-Info.plist */; };
@@ -74,6 +76,8 @@
 		9B19D6542055511C00D7BCD1 /* imageSelectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageSelectionHeader.swift; sourceTree = "<group>"; };
 		9B19D6562056D7E300D7BCD1 /* captionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = captionViewController.swift; sourceTree = "<group>"; };
 		9B19D6582056E52500D7BCD1 /* constraintUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constraintUIView.swift; sourceTree = "<group>"; };
+		9B2092F9205D0C6C00DC498D /* captionPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = captionPost.swift; sourceTree = "<group>"; };
+		9B2092FB205D179700DC498D /* postCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postCell.swift; sourceTree = "<group>"; };
 		9BAB2217204C4DF8006022E5 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		9BD90C5C203F15400018E472 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9BD90C63204071990018E472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 				9B0F85F42046F1D600662F35 /* UserProfileHeaderCell.swift */,
 				9BEA98A42052DA0A0045FA47 /* imageSelectionCell.swift */,
 				9B19D6542055511C00D7BCD1 /* imageSelectionHeader.swift */,
+				9B2092FB205D179700DC498D /* postCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				9B0F85F920470CD800662F35 /* UserInfo.swift */,
+				9B2092F9205D0C6C00DC498D /* captionPost.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -578,8 +584,10 @@
 				9B0278CC203B5DF000F57783 /* AppDelegate.swift in Sources */,
 				9B19D6572056D7E300D7BCD1 /* captionViewController.swift in Sources */,
 				9BEA98A52052DA0A0045FA47 /* imageSelectionCell.swift in Sources */,
+				9B2092FA205D0C6C00DC498D /* captionPost.swift in Sources */,
 				9B0F85F52046F1D600662F35 /* UserProfileHeaderCell.swift in Sources */,
 				9BD90C5D203F15400018E472 /* Extension.swift in Sources */,
+				9B2092FC205D179700DC498D /* postCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

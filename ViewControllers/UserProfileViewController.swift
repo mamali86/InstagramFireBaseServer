@@ -15,14 +15,16 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
     let headerId = "headerId"
     let cellId = "cellID"
     var user: UserInfo?
+    var posts =  [captionPost]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = .white
         collectionView?.register(UserProfileHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(postCell.self, forCellWithReuseIdentifier: cellId)
         setUpNavigationItems()
         fetchUsers()
+        uploadPost()
     }
     
     fileprivate func setUpNavigationItems() {
@@ -56,14 +58,19 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         present(alertController, animated: true, completion: nil)
     }
     
+    
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return posts.count
     }
     
  
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .red
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! postCell
+        
+        cell.post = posts[indexPath.item]
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -108,6 +115,25 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
             print("failed to fetch the user",err)
         }
     }
+    
+    fileprivate func uploadPost(){
+        
+        guard let currentUserID = Auth.auth().currentUser?.uid else {return}
+        
+        Database.database().reference().child("Caption").child(currentUserID).observeSingleEvent(of: .value) { (post) in
+            
+            guard let dictionary = post.value as? [String: Any] else {return}
+            
+            
+            self.posts.append(captionPost(dictionary: dictionary))
+            self.collectionView?.reloadData()
+            
+        
+        }
+    
+    }
+    
+    
     
 }
 
