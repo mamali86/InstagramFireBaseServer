@@ -122,13 +122,14 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         
         Database.database().reference().child("Caption").child(currentUserID).observeSingleEvent(of: .value) { (snapshot) in
             
-            guard let dictionary = snapshot.value as? [String: Any] else {return}
+            guard let dictionaries = snapshot.value as? [String: Any] else {return}
 
+            print(dictionaries)
             
-            let imageUrl = dictionary["ImageUrl"] as? String
+//            let imageUrl = dictionary["ImageUrl"] as? String
             
             
-            self.posts.append(captionPost(dictionary: dictionary))
+//            self.posts.append(captionPost(dictionary: dictionary))
             self.collectionView?.reloadData()
         }
         

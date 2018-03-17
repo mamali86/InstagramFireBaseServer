@@ -79,8 +79,7 @@ class captionViewController: UIViewController {
             print("successfully uploaded profile image", captionImage)
             
             let dictionaryValues = ["ImageUrl": captionImage, "captionText": captionText, "imageWidth": image.size.width, "imageHeight": image.size.height, "creationDate": Date().timeIntervalSince1970] as [String : Any]
-            let values = [uid : dictionaryValues]
-            Database.database().reference().child("Caption").child(uid).updateChildValues(values, withCompletionBlock: { (err, ref) in
+            Database.database().reference().child("Caption").child(uid).childByAutoId().updateChildValues(dictionaryValues, withCompletionBlock: { (err, ref) in
                 if let err = error {
                     self.navigationItem.rightBarButtonItem?.isEnabled = true
                     print("Failed to save user info into db", err)

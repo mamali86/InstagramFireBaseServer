@@ -95,8 +95,6 @@ class PlusViewController: UICollectionViewController, UICollectionViewDelegateFl
         capationController.selectedImageCaption = headerRef?.topImage.image
         navigationController?.pushViewController(capationController, animated: true)
         
-        
-        
     }
     
 
