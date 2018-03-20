@@ -12,34 +12,16 @@ class UserProfileHeaderCell: UICollectionViewCell {
     
     var user: UserInfo? {
     didSet {
-     setProfileImage()
+        guard let profileImageUrl = user?.profileImageUrl else {return}
+        profileImage.loadImage(urlstring: profileImageUrl)
         usernameLabel.text = user?.username
     }
     }
     
     
-    fileprivate func setProfileImage() {
-        
-        guard let profileImageUrl = user?.profileImageUrl else {return}
-        guard let url = URL(string: profileImageUrl) else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            if let err = error {
-                print("Could not fecth image data", err)
-            }
-            
-            guard let data = data else {return}
-            let imageToCache = UIImage(data: data)
-            DispatchQueue.main.async {
-                self.profileImage.image = imageToCache
-            }
-            
-            }.resume()
-    }
     
-    
-    let profileImage: UIImageView = {
-        let image = UIImageView()
+    let profileImage: CustomImageView = {
+        let image = CustomImageView()
         return image
     }()
     

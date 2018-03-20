@@ -24,7 +24,54 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         collectionView?.register(postCell.self, forCellWithReuseIdentifier: cellId)
         setUpNavigationItems()
         fetchUsers()
-        uploadPost()
+//        uploadPost()
+        fetchOrderedPosts()
+        
+    }
+    
+    fileprivate func fetchOrderedPosts() {
+    
+    
+        guard let currentUserID = Auth.auth().currentUser?.uid else {return}
+
+        let ref = Database.database().reference().child("Caption").child(currentUserID)
+        
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String: Any] else {return}
+
+            let post = captionPost(dictionary: dictionary)
+            self.posts.append(post)
+            
+            self.collectionView?.reloadData()
+            
+        }) { (err) in
+            print("failed to fetch posts orderly", err)
+        }
+    }
+    
+    
+    
+    fileprivate func uploadPost(){
+        
+        guard let currentUserID = Auth.auth().currentUser?.uid else {return}
+        
+        Database.database().reference().child("Caption").child(currentUserID).observeSingleEvent(of: .value) { (snapshot) in
+            
+            guard let dictionaries = snapshot.value as? [String: Any] else {return}
+            print(dictionaries)
+            
+            dictionaries.forEach({ (key,value) in
+                
+                guard let dictionary = value as? [String: Any] else {return}
+                let post = captionPost(dictionary: dictionary)
+                self.posts.append(post)
+            })
+            
+            self.collectionView?.reloadData()
+        }
+        
+        
     }
     
     fileprivate func setUpNavigationItems() {
@@ -116,26 +163,7 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         }
     }
     
-    fileprivate func uploadPost(){
-        
-        guard let currentUserID = Auth.auth().currentUser?.uid else {return}
-        
-        Database.database().reference().child("Caption").child(currentUserID).observeSingleEvent(of: .value) { (snapshot) in
-            
-            guard let dictionaries = snapshot.value as? [String: Any] else {return}
-
-            dictionaries.forEach({ (key,value) in
-                
-                guard let dictionary = value as? [String: Any] else {return}
-                let post = captionPost(dictionary: dictionary)
-                self.posts.append(post)
-            })
-            
-            self.collectionView?.reloadData()
-        }
-        
     
-    }
     
     
     

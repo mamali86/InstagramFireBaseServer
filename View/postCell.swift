@@ -10,9 +10,10 @@ import UIKit
 
 class postCell: UICollectionViewCell {
     
+    
     var post: captionPost? {
         didSet{
-            
+
             setPostImage()
         }
     }
@@ -22,26 +23,14 @@ class postCell: UICollectionViewCell {
     
         
         guard let postImageUrl = post?.postImageUrl else {return}
-        guard let url = URL(string: postImageUrl) else {return}
-
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            if let err = error {
-                print("Could not fecth postImage data",err)
-            }
-            
-            guard let data = data else {return}
-            guard let imageToCache = UIImage(data: data) else {return}
-            DispatchQueue.main.async {
-                self.postImage.image = imageToCache
-            }
-            
-        }.resume()
+        
+        postImage.loadImage(urlstring: postImageUrl)
+        
         
     }
     
-    let postImage: UIImageView = {
-       let image = UIImageView()
+    let postImage: CustomImageView = {
+       let image = CustomImageView()
         image.backgroundColor = .purple
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
