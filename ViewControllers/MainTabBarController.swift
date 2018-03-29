@@ -45,14 +45,14 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func setupControllers(){
         
-        let userProfileController = setUpNavigationController(image: #imageLiteral(resourceName: "home_unselected"), selectedImage:#imageLiteral(resourceName: "home_selected").withRenderingMode(.alwaysOriginal), rootViewController: UserProfileViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+        let homeViewController = setUpNavigationController(image: #imageLiteral(resourceName: "home_unselected"), selectedImage:#imageLiteral(resourceName: "home_selected").withRenderingMode(.alwaysOriginal), rootViewController: HomeViewController(collectionViewLayout: UICollectionViewFlowLayout()))
        let searchViewController = setUpNavigationController(image: #imageLiteral(resourceName: "search_unselected"), selectedImage: #imageLiteral(resourceName: "search_selected").withRenderingMode(.alwaysOriginal))
        let plusViewControler = setUpNavigationController(image: #imageLiteral(resourceName: "plus_unselected"), selectedImage: #imageLiteral(resourceName: "plus_unselected").withRenderingMode(.alwaysOriginal))
        let likeViewController = setUpNavigationController(image: #imageLiteral(resourceName: "like_unselected"), selectedImage: #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal))
-        let profileViewController = setUpNavigationController(image: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected").withRenderingMode(.alwaysOriginal))
+        let userProfileController = setUpNavigationController(image: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected").withRenderingMode(.alwaysOriginal))
         
         
-    viewControllers = [userProfileController, searchViewController, plusViewControler, likeViewController, profileViewController]
+    viewControllers = [homeViewController, searchViewController, plusViewControler, likeViewController, userProfileController]
         
         guard let items = tabBar.items else {return}
         for item in items {

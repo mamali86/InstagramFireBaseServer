@@ -69,7 +69,6 @@ class captionViewController: UIViewController {
         Storage.storage().reference().child("Caption").child(filename).putData(uploadData, metadata: nil) { (metadata, error) in
             if let err = error {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
-
                  print("Failed to upload user profile image into db", err)
             }
             
