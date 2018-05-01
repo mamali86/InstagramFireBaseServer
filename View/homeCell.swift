@@ -11,20 +11,35 @@ import UIKit
 
 class homeCell: UICollectionViewCell {
  
-    
+        
     var post: captionPost? {
         
         didSet{
             guard let postImageUrl = post?.postImageUrl else {return}
-            
             postImage.loadImage(urlstring: postImageUrl)
             
-            
-            
         }
-        
     }
     
+    let userNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Username"
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
+    
+    
+    let profileImageView: CustomImageView = {
+        let image = CustomImageView()
+        image.contentMode = .scaleAspectFill
+        image.layer.cornerRadius = 40 / 2
+        image.clipsToBounds = true
+        image.backgroundColor = .red
+
+        return image
+        
+    }()
     
     let postImage: CustomImageView = {
         let image = CustomImageView()
@@ -33,18 +48,89 @@ class homeCell: UICollectionViewCell {
         return image
         
     }()
-   
+    
+    let optionsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("•••", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        return button
+    }()
+    
+    let likeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
+        return button
+    }()
+    
+    let commentButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "comment").withRenderingMode(.alwaysOriginal), for: .normal)
+        return button
+    }()
+    
+    let sendMessageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "send2").withRenderingMode(.alwaysOriginal), for: .normal)
+        return button
+    }()
+    
+    
+    let ribbonButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "ribbon").withRenderingMode(.alwaysOriginal), for: .normal)
+        return button
+    }()
+    
+    let captionLabel: UILabel = {
+        let label = UILabel()
+//        label.text = "STH for now"
+        let attributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]
+        let attributedText = NSMutableAttributedString(string: "Username", attributes: attributes)
+        attributedText.append(NSAttributedString(string: " Some Caption that will perhaps wrap onto the next line.", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
+          attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 4)]))
+        attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+        label.attributedText = attributedText
+        label.numberOfLines = 0
+        return label
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        
+        addSubview(profileImageView)
         addSubview(postImage)
-        postImage.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        addSubview(userNameLabel)
+        addSubview(optionsButton)
+        addSubview(ribbonButton)
+        addSubview(captionLabel)
+
+
+        profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
+        postImage.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        postImage.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
+        
+        userNameLabel.anchor(top: profileImageView.topAnchor, left: profileImageView.rightAnchor, bottom: nil, right: optionsButton.leftAnchor, paddingTop: 0, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: 80, height: 40)
+        optionsButton.anchor(top: profileImageView.topAnchor, left: nil, bottom: postImage.topAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 44, height: 0)
+        
+        ribbonButton.anchor(top: postImage.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 50)
+        
+       setUpActionButtons()
+        
+        captionLabel.anchor(top: likeButton.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
     }
     
     
+    fileprivate func setUpActionButtons() {
     
+        let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton, sendMessageButton])
+        addSubview(stackView)
+        stackView.distribution = .fillEqually
+        stackView.anchor(top: postImage.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
+    
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

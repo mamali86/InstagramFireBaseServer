@@ -35,7 +35,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         Database.database().reference().child("Caption").child(currentUserID).observeSingleEvent(of: .value) { (snapshot) in
             
             guard let dictionaries = snapshot.value as? [String: Any] else {return}
-            print(dictionaries)
+//            print(dictionaries)
             
             dictionaries.forEach({ (key,value) in
                 
@@ -64,6 +64,12 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 200)
+        
+        var height: CGFloat = 40 + 8 + 8
+        height += view.frame.width
+        height += 50
+        height += 80
+        
+        return CGSize(width: view.frame.width, height: height)
     }
 }

@@ -49,7 +49,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
        let searchViewController = setUpNavigationController(image: #imageLiteral(resourceName: "search_unselected"), selectedImage: #imageLiteral(resourceName: "search_selected").withRenderingMode(.alwaysOriginal))
        let plusViewControler = setUpNavigationController(image: #imageLiteral(resourceName: "plus_unselected"), selectedImage: #imageLiteral(resourceName: "plus_unselected").withRenderingMode(.alwaysOriginal))
        let likeViewController = setUpNavigationController(image: #imageLiteral(resourceName: "like_unselected"), selectedImage: #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal))
-        let userProfileController = setUpNavigationController(image: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected").withRenderingMode(.alwaysOriginal))
+        let userProfileController = setUpNavigationController(image: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected").withRenderingMode(.alwaysOriginal), rootViewController: UserProfileViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         
     viewControllers = [homeViewController, searchViewController, plusViewControler, likeViewController, userProfileController]
