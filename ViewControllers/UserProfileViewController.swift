@@ -42,7 +42,9 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
 
             guard let user = self.user else {return}
             let post = captionPost(user: user, dictionary: dictionary)
-            self.posts.append(post)
+            self.posts.insert(post, at: 0)
+
+//            self.posts.append(post)
             
             self.collectionView?.reloadData()
             

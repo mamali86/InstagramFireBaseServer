@@ -46,8 +46,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                     guard let dictionary = value as? [String: Any] else {return}
                     
                     let post = captionPost(user: user, dictionary: dictionary)
-                    self.posts.insert(post, at: 0)
-                    //                self.posts.append(post)
+                                    self.posts.append(post)
                 })
                 
                 self.collectionView?.reloadData()
