@@ -18,7 +18,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
        collectionView?.backgroundColor = .white
        collectionView?.register(homeCell.self, forCellWithReuseIdentifier: cellID)
        setUpNavigationItems()
-        fecthPost()
+        fetchPost()
         
 }
     
@@ -28,25 +28,31 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
     }
     
-    fileprivate func fecthPost(){
+    fileprivate func fetchPost(){
         
         guard let currentUserID = Auth.auth().currentUser?.uid else {return}
         
-        Database.database().reference().child("Caption").child(currentUserID).observeSingleEvent(of: .value) { (snapshot) in
+        Database.database().reference().child("users").child(currentUserID).observeSingleEvent(of: .value) { (snap) in
             
-            guard let dictionaries = snapshot.value as? [String: Any] else {return}
-//            print(dictionaries)
-            
-            dictionaries.forEach({ (key,value) in
+            guard let dictionary = snap.value as? [String: Any] else {return}
+            let user = UserInfo(dictionary: dictionary)
+
+            Database.database().reference().child("Caption").child(currentUserID).observeSingleEvent(of: .value) { (snapshot) in
                 
-                guard let dictionary = value as? [String: Any] else {return}
-                let post = captionPost(dictionary: dictionary)
-                self.posts.append(post)
-            })
-            
-            self.collectionView?.reloadData()
+                guard let dictionaries = snapshot.value as? [String: Any] else {return}
+                
+                dictionaries.forEach({ (key,value) in
+                    
+                    guard let dictionary = value as? [String: Any] else {return}
+                    
+                    let post = captionPost(user: user, dictionary: dictionary)
+                    self.posts.insert(post, at: 0)
+                    //                self.posts.append(post)
+                })
+                
+                self.collectionView?.reloadData()
+                }
         }
-        
         
     }
     

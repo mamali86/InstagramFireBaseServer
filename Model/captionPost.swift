@@ -12,12 +12,14 @@ import Foundation
 struct captionPost {
     
     var postImageUrl: String
+    var user: UserInfo?
+    let caption: String
     
     
-    init(dictionary: [String: Any]) {
+    init(user: UserInfo, dictionary: [String: Any]) {
         
         self.postImageUrl = dictionary["ImageUrl"] as? String ?? ""
-        
-        
+        self.user = user
+        self.caption = dictionary["captionText"] as? String ?? ""
     }
 }

@@ -40,7 +40,8 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
             
             guard let dictionary = snapshot.value as? [String: Any] else {return}
 
-            let post = captionPost(dictionary: dictionary)
+            guard let user = self.user else {return}
+            let post = captionPost(user: user, dictionary: dictionary)
             self.posts.append(post)
             
             self.collectionView?.reloadData()
@@ -64,7 +65,8 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
             dictionaries.forEach({ (key,value) in
                 
                 guard let dictionary = value as? [String: Any] else {return}
-                let post = captionPost(dictionary: dictionary)
+                guard let user = self.user else {return}
+                let post = captionPost(user: user, dictionary: dictionary)
                 self.posts.append(post)
             })
             
@@ -150,7 +152,6 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         guard let userID = Auth.auth().currentUser?.uid else {return}
         
         Database.database().reference().child("users").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot.value ?? "")
             
             guard let dictionary = snapshot.value as? [String: Any] else {return}
             
