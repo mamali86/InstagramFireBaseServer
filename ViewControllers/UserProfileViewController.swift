@@ -153,17 +153,13 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         
         guard let userID = Auth.auth().currentUser?.uid else {return}
         
-        Database.database().reference().child("users").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            guard let dictionary = snapshot.value as? [String: Any] else {return}
-            
-            self.user = UserInfo(dictionary: dictionary)
-            self.navigationItem.title =  self.user?.username
-            
+    
+        Database.getUserInfo(uid: userID) { (user) in
+            self.user = user
+            self.navigationItem.title =  user.username
             self.collectionView?.reloadData()
-        }) { (err) in
-            print("failed to fetch the user",err)
         }
+
     }
     
     
