@@ -34,6 +34,8 @@
 		9BEA98A120517F2B0045FA47 /* PlusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA98A020517F2B0045FA47 /* PlusViewController.swift */; };
 		9BEA98A52052DA0A0045FA47 /* imageSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA98A42052DA0A0045FA47 /* imageSelectionCell.swift */; };
 		9BF87FA82099CE8400C1E39E /* FBDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF87FA72099CE8400C1E39E /* FBDatabase.swift */; };
+		9BF87FAA2099FF2500C1E39E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF87FA92099FF2500C1E39E /* SearchViewController.swift */; };
+		9BF87FAC209A06F600C1E39E /* searchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF87FAB209A06F600C1E39E /* searchCell.swift */; };
 		C8402D82E00DA93F495FDE63 /* Pods_InstagramSampleApp_InstagramSampleAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB5C9D14BCF92A297C9A6F8 /* Pods_InstagramSampleApp_InstagramSampleAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +95,8 @@
 		9BEA98A020517F2B0045FA47 /* PlusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusViewController.swift; sourceTree = "<group>"; };
 		9BEA98A42052DA0A0045FA47 /* imageSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageSelectionCell.swift; sourceTree = "<group>"; };
 		9BF87FA72099CE8400C1E39E /* FBDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDatabase.swift; sourceTree = "<group>"; };
+		9BF87FA92099FF2500C1E39E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		9BF87FAB209A06F600C1E39E /* searchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchCell.swift; sourceTree = "<group>"; };
 		BFF1DEBCB0CFD58ACB5D0AE6 /* Pods-InstagramSampleApp-InstagramSampleAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramSampleApp-InstagramSampleAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramSampleApp-InstagramSampleAppUITests/Pods-InstagramSampleApp-InstagramSampleAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FE3E4A1A05FACB16753D6858 /* Pods-InstagramSampleApp-InstagramSampleAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramSampleApp-InstagramSampleAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramSampleApp-InstagramSampleAppTests/Pods-InstagramSampleApp-InstagramSampleAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,6 +213,7 @@
 				9BEA98A020517F2B0045FA47 /* PlusViewController.swift */,
 				9B19D6562056D7E300D7BCD1 /* captionViewController.swift */,
 				9B209301206B8BF500DC498D /* HomeViewController.swift */,
+				9BF87FA92099FF2500C1E39E /* SearchViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 				9B19D6542055511C00D7BCD1 /* imageSelectionHeader.swift */,
 				9B2092FB205D179700DC498D /* postCell.swift */,
 				9B8DBA14206CD02C002FD96C /* homeCell.swift */,
+				9BF87FAB209A06F600C1E39E /* searchCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -599,7 +605,9 @@
 				9B0278CC203B5DF000F57783 /* AppDelegate.swift in Sources */,
 				9B19D6572056D7E300D7BCD1 /* captionViewController.swift in Sources */,
 				9BEA98A52052DA0A0045FA47 /* imageSelectionCell.swift in Sources */,
+				9BF87FAA2099FF2500C1E39E /* SearchViewController.swift in Sources */,
 				9B2092FA205D0C6C00DC498D /* captionPost.swift in Sources */,
+				9BF87FAC209A06F600C1E39E /* searchCell.swift in Sources */,
 				9BF87FA82099CE8400C1E39E /* FBDatabase.swift in Sources */,
 				9B0F85F52046F1D600662F35 /* UserProfileHeaderCell.swift in Sources */,
 				9BD90C5D203F15400018E472 /* UIColor.swift in Sources */,
