@@ -30,8 +30,14 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         
         collectionView?.register(searchCell.self, forCellWithReuseIdentifier: cellID)
         collectionView?.alwaysBounceVertical = true
-        
+        collectionView?.keyboardDismissMode = .onDrag
         fetchUsers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchBar.isHidden = false
+
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -59,6 +65,12 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         Database.database().reference().child("users").observeSingleEvent(of: .value) { (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else {return}
             dictionaries.forEach({ (key, value) in
+        
+                if key == Auth.auth().currentUser?.uid  {
+                    return
+
+                }
+                
                 guard let dictionary = value as? [String: Any] else {return}
                 let user = UserInfo(uid: key, dictionary: dictionary)
                 self.user.append(user)
@@ -85,6 +97,19 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! searchCell
         cell.user = filteredUsers[indexPath.item]
         return cell
+        
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        searchBar.isHidden = true
+        searchBar.resignFirstResponder()
+        let userProfileController = UserProfileViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        
+//        let user = filteredUsers[indexPath.item]
+        userProfileController.user = filteredUsers[indexPath.item]
+//        userProfileController.userid = user.uid
+        navigationController?.pushViewController(userProfileController, animated: true)
         
     }
     

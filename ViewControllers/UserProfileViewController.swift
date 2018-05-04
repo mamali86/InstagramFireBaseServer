@@ -14,6 +14,8 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
     
     let headerId = "headerId"
     let cellId = "cellID"
+//    var userid: String?
+    
     var user: UserInfo?
     var posts =  [captionPost]()
 
@@ -24,18 +26,17 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         collectionView?.register(postCell.self, forCellWithReuseIdentifier: cellId)
         setUpNavigationItems()
         fetchUsers()
+        
+        
 //        uploadPost()
-        fetchOrderedPosts()
         
     }
     
     fileprivate func fetchOrderedPosts() {
     
     
-        guard let currentUserID = Auth.auth().currentUser?.uid else {return}
-
+        guard let currentUserID = self.user?.uid else {return}
         let ref = Database.database().reference().child("Caption").child(currentUserID)
-        
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
             
             guard let dictionary = snapshot.value as? [String: Any] else {return}
@@ -151,20 +152,18 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
     
     fileprivate func fetchUsers(){
         
-        guard let userID = Auth.auth().currentUser?.uid else {return}
-        
+        let userID = user?.uid ?? (Auth.auth().currentUser?.uid ?? "")
     
         Database.getUserInfo(uid: userID) { (user) in
             self.user = user
             self.navigationItem.title =  user.username
             self.collectionView?.reloadData()
+            self.fetchOrderedPosts()
+
         }
 
+
     }
-    
-    
-    
-    
     
 }
 
