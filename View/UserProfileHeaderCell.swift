@@ -15,8 +15,87 @@ class UserProfileHeaderCell: UICollectionViewCell {
         guard let profileImageUrl = user?.profileImageUrl else {return}
         profileImage.loadImage(urlstring: profileImageUrl)
         usernameLabel.text = user?.username
+        editProfileButton.addTarget(self, action: #selector(handleFollowUnfollow), for: .touchUpInside)
+        setUpFollowUnfollow()
+
     }
     }
+    
+    @objc fileprivate func handleFollowUnfollow() {
+        
+        guard let currentLoggedinUserID = Auth.auth().currentUser?.uid else {return}
+        guard let userID = user?.uid else {return}
+        
+  
+        if editProfileButton.titleLabel?.text == "Unfollow"  {
+         Database.database().reference().child("Following").child(currentLoggedinUserID).child(userID).removeValue(completionBlock: { (err, ref) in
+                
+                if let err = err {
+                    
+                    print("Failed to unfollow",err)
+                }
+                self.editProfileButton.setTitle("Follow", for: .normal)
+                self.editProfileButton.setTitleColor(.white, for: .normal)
+                self.editProfileButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+                self.editProfileButton.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+            })
+        }
+        else {
+            let dictionaryValues = [userID: 1]
+            Database.database().reference().child("Following").child(currentLoggedinUserID).updateChildValues(dictionaryValues, withCompletionBlock: { (err, ref) in
+                if let error = err {
+                    print("Failed to save user info into db", error)
+                    return
+                }
+            })
+            self.editProfileButton.setTitle("Unfollow", for: .normal)
+            self.editProfileButton.backgroundColor = .white
+            self.editProfileButton.setTitleColor(.black, for: .normal)
+        }
+        }
+
+    
+    
+    fileprivate func setUpFollowUnfollow(){
+        guard let currentLoggedinUserID = Auth.auth().currentUser?.uid else {return}
+        guard let userID = user?.uid else {return}
+        if currentLoggedinUserID ==  userID {
+            
+        }
+            
+        else {
+            
+            //Check if following
+        Database.database().reference().child("Following").child(currentLoggedinUserID).child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+                print(snapshot.value ?? "")
+                
+                if let isFollowing = snapshot.value as? Int, isFollowing == 1 {
+                    
+                    self.editProfileButton.setTitle("Unfollow", for: .normal)
+
+                }
+                else {
+                    
+                    self.editProfileButton.setTitle("Follow", for: .normal)
+                    self.editProfileButton.setTitleColor(.white, for: .normal)
+                    self.editProfileButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+                    self.editProfileButton.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+                    
+                }
+                
+            }, withCancel: { (err) in
+                    print("failed to check if following", err)
+        
+            })
+            
+          
+        }
+        
+    }
+    
+
+
+ 
     
     
     
@@ -55,7 +134,7 @@ class UserProfileHeaderCell: UICollectionViewCell {
     }()
     
     
-    let editProfileButton: UIButton = {
+    lazy var editProfileButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Edit Profile", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
@@ -63,8 +142,10 @@ class UserProfileHeaderCell: UICollectionViewCell {
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 3
+
         return button
     }()
+    
     
     
     

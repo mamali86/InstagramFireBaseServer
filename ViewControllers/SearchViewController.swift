@@ -67,6 +67,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
             dictionaries.forEach({ (key, value) in
         
                 if key == Auth.auth().currentUser?.uid  {
+                    // Find current user and omit 
                     return
 
                 }
