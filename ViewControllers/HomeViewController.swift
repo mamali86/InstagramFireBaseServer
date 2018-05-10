@@ -19,9 +19,34 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
        collectionView?.register(homeCell.self, forCellWithReuseIdentifier: cellID)
        setUpNavigationItems()
         fetchPost()
-        
+
+        fetchHomeFeed()
 }
     
+    fileprivate func fetchHomeFeed(){
+        
+        guard let currentUserID = Auth.auth().currentUser?.uid else {return}
+        Database.database().reference().child("Following").child(currentUserID).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let followingDoctionary = snapshot.value as? [String: Any] else {return}
+            
+            followingDoctionary.forEach({ (key, value) in
+                
+                Database.getUserInfo(uid: key) { (user) in
+                    self.fetchUserPosts(user: user)
+                }
+                
+            })
+            
+          
+            
+            
+        }) { (err) in
+            print("Error Finding Followers")
+        }
+    
+    
+    }
     
     fileprivate func setUpNavigationItems() {
     
@@ -51,6 +76,11 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                     let post = captionPost(user: user, dictionary: dictionary)
                     self.posts.append(post)
                 })
+            
+            //Ordering Posts
+            self.posts.sort(by: { (p1, p2) -> Bool in
+                return p1.postDate.compare(p2.postDate) == .orderedDescending
+            })
                 
                 self.collectionView?.reloadData()
             }

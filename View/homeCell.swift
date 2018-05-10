@@ -37,9 +37,10 @@ class homeCell: UICollectionViewCell {
         let attributedText = NSMutableAttributedString(string: username, attributes: attributes)
         attributedText.append(NSAttributedString(string: " \(captionPost)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 4)]))
-        attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
         
-        
+        let creationsDate = post.postDate.timeAgoDisplay()
+        attributedText.append(NSAttributedString(string: creationsDate, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+    
          captionLabel.attributedText = attributedText
 //         captionLabel.text = post?.caption
 

@@ -27,6 +27,7 @@
 		9B8DBA15206CD02C002FD96C /* homeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DBA14206CD02C002FD96C /* homeCell.swift */; };
 		9B8DBA19206CDAB9002FD96C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B8DBA18206CDAB8002FD96C /* Assets.xcassets */; };
 		9BAB2218204C4DF8006022E5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAB2217204C4DF8006022E5 /* LogInViewController.swift */; };
+		9BC0FEEF20A4413A007BB242 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC0FEEE20A4413A007BB242 /* Date.swift */; };
 		9BD90C5D203F15400018E472 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD90C5C203F15400018E472 /* UIColor.swift */; };
 		9BD90C64204071990018E472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BD90C63204071990018E472 /* GoogleService-Info.plist */; };
 		9BD90C6B204567A10018E472 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD90C6A204567A10018E472 /* MainTabBarController.swift */; };
@@ -88,6 +89,7 @@
 		9B8DBA14206CD02C002FD96C /* homeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeCell.swift; sourceTree = "<group>"; };
 		9B8DBA18206CDAB8002FD96C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../Downloads/Instagram_Swift3_and_4_Firebase3_and_4 (4)/Instagram_Swift4_Firebase4_0_2/InstagramFirebase/InstagramFirebase/Assets.xcassets"; sourceTree = "<group>"; };
 		9BAB2217204C4DF8006022E5 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		9BC0FEEE20A4413A007BB242 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		9BD90C5C203F15400018E472 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		9BD90C63204071990018E472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9BD90C6A204567A10018E472 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				9B19D6582056E52500D7BCD1 /* ConstraintUIView.swift */,
 				9BF87FA72099CE8400C1E39E /* FBDatabase.swift */,
 				9B2092FD2060F6AF00DC498D /* CustomImageView.swift */,
+				9BC0FEEE20A4413A007BB242 /* Date.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BC0FEEF20A4413A007BB242 /* Date.swift in Sources */,
 				9B0278FB203B5F6C00F57783 /* RouteManager.swift in Sources */,
 				9B8DBA15206CD02C002FD96C /* homeCell.swift in Sources */,
 				9B209302206B8BF500DC498D /* HomeViewController.swift in Sources */,
