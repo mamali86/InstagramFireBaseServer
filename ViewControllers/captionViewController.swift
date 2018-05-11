@@ -11,6 +11,8 @@ import Firebase
 
 class captionViewController: UIViewController {
     
+    static let updateNotificationName = NSNotification.Name(rawValue: "showSharedPodcasts")
+    
     var selectedImageCaption: UIImage? {
     
     didSet{
@@ -86,6 +88,8 @@ class captionViewController: UIViewController {
                 }
             })
         }
+        
+        NotificationCenter.default.post(name: captionViewController.updateNotificationName, object: nil)
         
         
        dismiss(animated: true, completion: nil)

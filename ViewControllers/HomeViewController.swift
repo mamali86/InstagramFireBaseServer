@@ -12,16 +12,45 @@ import Firebase
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     let cellID = "cellID"
     var posts = [captionPost]()
+
+//    var posts = [captionPost]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
        collectionView?.backgroundColor = .white
        collectionView?.register(homeCell.self, forCellWithReuseIdentifier: cellID)
        setUpNavigationItems()
-        fetchPost()
-
-        fetchHomeFeed()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView?.refreshControl = refreshControl
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(retreiveNewPost), name: captionViewController.updateNotificationName, object: nil)
+        
+       fetchAllPosts()
 }
+    
+    
+    @objc func retreiveNewPost(){
+    
+        
+    handleRefresh()
+    }
+    
+    @objc fileprivate func handleRefresh(){
+        
+        print("refresh bro..")
+        posts.removeAll()
+
+        fetchAllPosts()
+        
+    }
+    
+    
+    fileprivate func fetchAllPosts(){
+        fetchPost()
+        fetchHomeFeed()
+    }
     
     fileprivate func fetchHomeFeed(){
         
@@ -70,6 +99,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         Database.database().reference().child("Caption").child(uid).observeSingleEvent(of: .value) { (snapshot) in
                 
                 guard let dictionaries = snapshot.value as? [String: Any] else {return}
+            
+            self.collectionView?.refreshControl?.endRefreshing()
                 
                 dictionaries.forEach({ (key,value) in
                     guard let dictionary = value as? [String: Any] else {return}
@@ -91,7 +122,12 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! homeCell
-        cell.post = posts[indexPath.item]
+        
+        if indexPath.item < posts.count {
+            cell.post = posts[indexPath.item]
+            
+        }
+        
         
         return cell
     }
