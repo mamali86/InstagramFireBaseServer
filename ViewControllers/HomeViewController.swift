@@ -20,6 +20,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
        collectionView?.backgroundColor = .white
        collectionView?.register(homeCell.self, forCellWithReuseIdentifier: cellID)
        setUpNavigationItems()
+    
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "camera3").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(cameraView))
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
@@ -29,6 +31,14 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
        fetchAllPosts()
 }
+    
+    
+    @objc func cameraView(){
+        
+        
+        let cameraViewController = CameraViewController()
+      present(cameraViewController, animated: true, completion: nil)
+    }
     
     
     @objc func retreiveNewPost(){
