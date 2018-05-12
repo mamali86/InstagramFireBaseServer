@@ -11,6 +11,17 @@ import XCTest
 
 class InstagramSampleAppTests: XCTestCase {
     
+    
+    func testTimeAgoString() {
+        
+        let fiveMinutesAgo = Date(timeIntervalSinceNow: -5 * 60)
+        let fiveMinutesAgoDisplay = fiveMinutesAgo.timeAgoDisplay()
+        XCTAssertEqual(fiveMinutesAgoDisplay, "5 minutes ago")
+        
+        
+    }
+    
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
