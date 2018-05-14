@@ -40,6 +40,12 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     }
     
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+        
+    }
+    
     fileprivate func setupHUD() {
         view.addSubview(capturePhotoButton)
         capturePhotoButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 24, paddingRight: 0, width: 80, height: 80)
@@ -71,12 +77,16 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer!)
         
         let previewPhoto = UIImage(data: imageData!)
+        let previewCameraPhotoView = PreviewCameraPhotoView()
+        previewCameraPhotoView.previewImage.image = previewPhoto
+        view.addSubview(previewCameraPhotoView)
+        previewCameraPhotoView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        let previewPhotoImageView = UIImageView(image: previewPhoto)
-        
-        view.addSubview(previewPhotoImageView)
-        
-        previewPhotoImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//        let previewPhotoImageView = UIImageView(image: previewPhoto)
+//
+//        view.addSubview(previewPhotoImageView)
+//
+//        previewPhotoImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
     
         

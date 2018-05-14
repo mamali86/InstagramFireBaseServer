@@ -26,6 +26,7 @@
 		9B209302206B8BF500DC498D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B209301206B8BF500DC498D /* HomeViewController.swift */; };
 		9B8DBA15206CD02C002FD96C /* homeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DBA14206CD02C002FD96C /* homeCell.swift */; };
 		9B8DBA19206CDAB9002FD96C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B8DBA18206CDAB8002FD96C /* Assets.xcassets */; };
+		9B92C46620A99DBE0094B49E /* PreviewCameraPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92C46520A99DBE0094B49E /* PreviewCameraPhotoView.swift */; };
 		9BAB2218204C4DF8006022E5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAB2217204C4DF8006022E5 /* LogInViewController.swift */; };
 		9BB630E820A5DAA10078756D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB630E720A5DAA10078756D /* CameraViewController.swift */; };
 		9BC0FEEF20A4413A007BB242 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC0FEEE20A4413A007BB242 /* Date.swift */; };
@@ -89,6 +90,7 @@
 		9B209301206B8BF500DC498D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9B8DBA14206CD02C002FD96C /* homeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeCell.swift; sourceTree = "<group>"; };
 		9B8DBA18206CDAB8002FD96C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../Downloads/Instagram_Swift3_and_4_Firebase3_and_4 (4)/Instagram_Swift4_Firebase4_0_2/InstagramFirebase/InstagramFirebase/Assets.xcassets"; sourceTree = "<group>"; };
+		9B92C46520A99DBE0094B49E /* PreviewCameraPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCameraPhotoView.swift; sourceTree = "<group>"; };
 		9BAB2217204C4DF8006022E5 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		9BB630E720A5DAA10078756D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9BC0FEEE20A4413A007BB242 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				9B2092FB205D179700DC498D /* postCell.swift */,
 				9B8DBA14206CD02C002FD96C /* homeCell.swift */,
 				9BF87FAB209A06F600C1E39E /* searchCell.swift */,
+				9B92C46520A99DBE0094B49E /* PreviewCameraPhotoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 			files = (
 				9BC0FEEF20A4413A007BB242 /* Date.swift in Sources */,
 				9B0278FB203B5F6C00F57783 /* RouteManager.swift in Sources */,
+				9B92C46620A99DBE0094B49E /* PreviewCameraPhotoView.swift in Sources */,
 				9B8DBA15206CD02C002FD96C /* homeCell.swift in Sources */,
 				9B209302206B8BF500DC498D /* HomeViewController.swift in Sources */,
 				9BD90C6D20457D140018E472 /* UserProfileViewController.swift in Sources */,
