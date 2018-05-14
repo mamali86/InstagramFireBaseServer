@@ -11,26 +11,45 @@ import XCTest
 
 class InstagramSampleAppTests: XCTestCase {
     
+    var user: UserInfo!
     
     func testTimeAgoString() {
         
         let fiveMinutesAgo = Date(timeIntervalSinceNow: -5 * 60)
         let fiveMinutesAgoDisplay = fiveMinutesAgo.timeAgoDisplay()
-        XCTAssertEqual(fiveMinutesAgoDisplay, "5 minutes ago")
+        XCTAssertEqual(fiveMinutesAgoDisplay, "5 mins ago")
         
         
     }
     
+    func testuserInfoTest(){
+        
+        let uid = "hdyiwjdhgu889ej"
+        
+        XCTAssertEqual(uid, user.uid)
+        
+    }
+    
+    
     
     override func setUp() {
         super.setUp()
+        
+        user = UserInfo(uid: "hdyiwjdhgu889ej", dictionary: ["Username": "Ali"])
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
         super.tearDown()
+        
+        user = nil
+
     }
+    
+    
+
     
     func testExample() {
         // This is an example of a functional test case.

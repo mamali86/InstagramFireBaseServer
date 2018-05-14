@@ -44,6 +44,7 @@ class captionViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(handleShare))
         let containerView = UIView()
         containerView.backgroundColor = .white
+
         view.addSubview(containerView)
         containerView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 100)
         

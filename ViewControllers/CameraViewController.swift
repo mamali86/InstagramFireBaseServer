@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     
     let dismissButton: UIButton = {
@@ -55,10 +55,37 @@ class CameraViewController: UIViewController {
     
     
     @objc fileprivate func handleCapturePhoto(){
-        print("hello")
-    
+        
+        
+        
+        let settings = AVCapturePhotoSettings()
+        guard let previewFormatType = settings.availablePreviewPhotoPixelFormatTypes.first else {return}
+        settings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey: previewFormatType] as [String : Any]
+        output.capturePhoto(with: settings, delegate: self)
+        
+        
     }
     
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        
+        let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer!)
+        
+        let previewPhoto = UIImage(data: imageData!)
+        
+        let previewPhotoImageView = UIImageView(image: previewPhoto)
+        
+        view.addSubview(previewPhotoImageView)
+        
+        previewPhotoImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+    
+        
+    }
+    
+    
+    
+    let output = AVCapturePhotoOutput()
+
     fileprivate func setupCaptureSession(){
         
         let captureSession = AVCaptureSession()
@@ -79,7 +106,6 @@ class CameraViewController: UIViewController {
         
         // 2. Set up the Outputs
         
-        let output = AVCapturePhotoOutput()
         if captureSession.canAddOutput(output){
             captureSession.addOutput(output)
 

@@ -20,9 +20,11 @@ class PlusViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.backgroundColor = .red
+        collectionView?.backgroundColor = .white
         collectionView?.register(imageSelectionCell.self, forCellWithReuseIdentifier: cellID)
         collectionView?.register(imageSelectionHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID)
+//        collectionView?.alwaysBounceVertical = true
+
         fetchImages()
         setUpNavigationBarItems()
     }
@@ -30,7 +32,7 @@ class PlusViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     fileprivate func fetchOptions() -> PHFetchOptions {
         let fetchOptions = PHFetchOptions()
-        fetchOptions.fetchLimit = 8
+        fetchOptions.fetchLimit = 50
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         return fetchOptions
     }
