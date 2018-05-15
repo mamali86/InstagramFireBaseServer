@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 
-class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
+class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewControllerTransitioningDelegate {
     
     
     let dismissButton: UIButton = {
@@ -36,10 +36,23 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         setupCaptureSession()
         
         setupHUD()
+        
+        transitioningDelegate = self
 
     
     }
     
+    
+    let customeAnimationPresenter = CustomAnimationPresenter()
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        
+        return customeAnimationPresenter
+        
+    }
+    
+    
+
     
     override var prefersStatusBarHidden: Bool {
         return true
