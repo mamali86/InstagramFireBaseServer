@@ -43,16 +43,22 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIV
     }
     
     
-    let customeAnimationPresenter = CustomAnimationPresenter()
+    let customAnimationPresenter = CustomAnimationPresenter()
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        
-        return customeAnimationPresenter
+
+        return customAnimationPresenter
         
     }
     
     
+    let customDestructiveAnimationPresenter = CustomDestructiveAnimationPresenter()
 
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return customDestructiveAnimationPresenter
+        
+    }
+    
     
     override var prefersStatusBarHidden: Bool {
         return true

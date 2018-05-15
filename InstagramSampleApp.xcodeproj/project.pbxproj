@@ -31,6 +31,7 @@
 		9BB630E820A5DAA10078756D /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB630E720A5DAA10078756D /* CameraViewController.swift */; };
 		9BC0FEEF20A4413A007BB242 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC0FEEE20A4413A007BB242 /* Date.swift */; };
 		9BCE6BE120AACBA800B90B49 /* CustomAnimationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6BE020AACBA800B90B49 /* CustomAnimationPresenter.swift */; };
+		9BCE6BE320AADFDE00B90B49 /* CustomDestructiveAnimationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE6BE220AADFDE00B90B49 /* CustomDestructiveAnimationPresenter.swift */; };
 		9BD90C5D203F15400018E472 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD90C5C203F15400018E472 /* UIColor.swift */; };
 		9BD90C64204071990018E472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BD90C63204071990018E472 /* GoogleService-Info.plist */; };
 		9BD90C6B204567A10018E472 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD90C6A204567A10018E472 /* MainTabBarController.swift */; };
@@ -96,6 +97,7 @@
 		9BB630E720A5DAA10078756D /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9BC0FEEE20A4413A007BB242 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		9BCE6BE020AACBA800B90B49 /* CustomAnimationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresenter.swift; sourceTree = "<group>"; };
+		9BCE6BE220AADFDE00B90B49 /* CustomDestructiveAnimationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDestructiveAnimationPresenter.swift; sourceTree = "<group>"; };
 		9BD90C5C203F15400018E472 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		9BD90C63204071990018E472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9BD90C6A204567A10018E472 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				9BB630E720A5DAA10078756D /* CameraViewController.swift */,
+				9BCE6BE220AADFDE00B90B49 /* CustomDestructiveAnimationPresenter.swift */,
 				9BCE6BE020AACBA800B90B49 /* CustomAnimationPresenter.swift */,
 			);
 			path = Camera;
@@ -612,6 +615,7 @@
 			files = (
 				9BC0FEEF20A4413A007BB242 /* Date.swift in Sources */,
 				9B0278FB203B5F6C00F57783 /* RouteManager.swift in Sources */,
+				9BCE6BE320AADFDE00B90B49 /* CustomDestructiveAnimationPresenter.swift in Sources */,
 				9B92C46620A99DBE0094B49E /* PreviewCameraPhotoView.swift in Sources */,
 				9B8DBA15206CD02C002FD96C /* homeCell.swift in Sources */,
 				9BCE6BE120AACBA800B90B49 /* CustomAnimationPresenter.swift in Sources */,
