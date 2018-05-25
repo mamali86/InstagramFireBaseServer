@@ -9,7 +9,11 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, homeCellDelegate {
+
+    
+    
+ 
     let cellID = "cellID"
     var posts = [captionPost]()
 
@@ -31,6 +35,13 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
        fetchAllPosts()
 }
+
+    func didTapComment(post: captionPost) {
+        
+        let commentViewController = CommentViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(commentViewController, animated: true)
+        
+    }
     
     
     @objc func cameraView(){
@@ -92,6 +103,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
     }
     
+    
     fileprivate func fetchPost(){
         
         guard let currentUserID = Auth.auth().currentUser?.uid else {return}
@@ -138,6 +150,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             
         }
         
+        cell.delegate = self
         
         return cell
     }

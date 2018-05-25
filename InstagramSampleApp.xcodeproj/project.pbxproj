@@ -24,6 +24,7 @@
 		9B2092FC205D179700DC498D /* postCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2092FB205D179700DC498D /* postCell.swift */; };
 		9B2092FE2060F6AF00DC498D /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2092FD2060F6AF00DC498D /* CustomImageView.swift */; };
 		9B209302206B8BF500DC498D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B209301206B8BF500DC498D /* HomeViewController.swift */; };
+		9B26E9CF20B8000100DEDC00 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B26E9CE20B8000100DEDC00 /* CommentViewController.swift */; };
 		9B8DBA15206CD02C002FD96C /* homeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8DBA14206CD02C002FD96C /* homeCell.swift */; };
 		9B8DBA19206CDAB9002FD96C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B8DBA18206CDAB8002FD96C /* Assets.xcassets */; };
 		9B92C46620A99DBE0094B49E /* PreviewCameraPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92C46520A99DBE0094B49E /* PreviewCameraPhotoView.swift */; };
@@ -90,6 +91,7 @@
 		9B2092FB205D179700DC498D /* postCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postCell.swift; sourceTree = "<group>"; };
 		9B2092FD2060F6AF00DC498D /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		9B209301206B8BF500DC498D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9B26E9CE20B8000100DEDC00 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		9B8DBA14206CD02C002FD96C /* homeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeCell.swift; sourceTree = "<group>"; };
 		9B8DBA18206CDAB8002FD96C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../Downloads/Instagram_Swift3_and_4_Firebase3_and_4 (4)/Instagram_Swift4_Firebase4_0_2/InstagramFirebase/InstagramFirebase/Assets.xcassets"; sourceTree = "<group>"; };
 		9B92C46520A99DBE0094B49E /* PreviewCameraPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCameraPhotoView.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				9B19D6562056D7E300D7BCD1 /* captionViewController.swift */,
 				9B209301206B8BF500DC498D /* HomeViewController.swift */,
 				9BF87FA92099FF2500C1E39E /* SearchViewController.swift */,
+				9B26E9CE20B8000100DEDC00 /* CommentViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				9BAB2218204C4DF8006022E5 /* LogInViewController.swift in Sources */,
 				9B19D6552055511C00D7BCD1 /* imageSelectionHeader.swift in Sources */,
 				9B0278CE203B5DF000F57783 /* SignUpViewController.swift in Sources */,
+				9B26E9CF20B8000100DEDC00 /* CommentViewController.swift in Sources */,
 				9BD90C6B204567A10018E472 /* MainTabBarController.swift in Sources */,
 				9B0F85FA20470CD800662F35 /* UserInfo.swift in Sources */,
 				9B19D6592056E52500D7BCD1 /* ConstraintUIView.swift in Sources */,
