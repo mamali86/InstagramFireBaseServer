@@ -11,13 +11,8 @@ import Firebase
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, homeCellDelegate {
 
-    
-    
- 
     let cellID = "cellID"
     var posts = [captionPost]()
-
-//    var posts = [captionPost]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +34,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     func didTapComment(post: captionPost) {
         
         let commentViewController = CommentViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        
+        commentViewController.post = post
         navigationController?.pushViewController(commentViewController, animated: true)
         
     }
@@ -126,7 +123,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                 
                 dictionaries.forEach({ (key,value) in
                     guard let dictionary = value as? [String: Any] else {return}
-                    let post = captionPost(user: user, dictionary: dictionary)
+                    var post = captionPost(user: user, dictionary: dictionary)
+                    post.id = key
                     self.posts.append(post)
                 })
             

@@ -78,7 +78,6 @@ class captionViewController: UIViewController {
             
             guard let uid = Auth.auth().currentUser?.uid else {return}
             guard let captionImage = metadata?.downloadURL()?.absoluteString else {return}
-            print("successfully uploaded profile image", captionImage)
             
             let dictionaryValues = ["ImageUrl": captionImage, "captionText": captionText, "imageWidth": image.size.width, "imageHeight": image.size.height, "creationDate": Date().timeIntervalSince1970] as [String : Any]
             Database.database().reference().child("Caption").child(uid).childByAutoId().updateChildValues(dictionaryValues, withCompletionBlock: { (err, ref) in

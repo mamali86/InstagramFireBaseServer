@@ -15,6 +15,7 @@ struct captionPost {
     var user: UserInfo?
     let caption: String
     let postDate: Date
+    var id: String?
     
     
     init(user: UserInfo, dictionary: [String: Any]) {
@@ -22,7 +23,6 @@ struct captionPost {
         self.postImageUrl = dictionary["ImageUrl"] as? String ?? ""
         self.user = user
         self.caption = dictionary["captionText"] as? String ?? ""
-        
         let date =  dictionary["creationDate"] as? Double ?? 0
         self.postDate = Date(timeIntervalSince1970: date)
     }
