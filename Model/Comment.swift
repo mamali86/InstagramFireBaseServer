@@ -10,6 +10,7 @@ import UIKit
 
 struct Comment {
     
+    var user: UserInfo?
     let text: String?
     let uid: String?
     

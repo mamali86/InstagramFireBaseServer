@@ -75,12 +75,18 @@ class CommentViewController: UICollectionViewController, UICollectionViewDelegat
     
     fileprivate func fetchComments() {
         guard let postID = post?.id else{return}
+        guard let uid = Auth.auth().currentUser?.uid else {return}
 
         Database.database().reference().child("Comment").child(postID).observe(.childAdded, with: { (snapshot) in
             guard let commentsDictionary = snapshot.value as?[String: Any] else {return}
-            let comment = Comment(dictionary: commentsDictionary)
-            self.comments.append(comment)
-            self.collectionView?.reloadData()
+            var comment = Comment(dictionary: commentsDictionary)
+            
+            let user = Database.getUserInfo(uid: uid, completion: { (user) in
+                comment.user = user
+                self.comments.append(comment)
+                self.collectionView?.reloadData()
+            })
+           
         }) { (err) in
             print("Failed to observe Comments", err)
         }

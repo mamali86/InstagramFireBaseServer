@@ -28,18 +28,12 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIV
     }()
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCaptureSession()
-        
         setupHUD()
-        
         transitioningDelegate = self
-
-    
     }
     
     
@@ -52,7 +46,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, UIV
     
     
     let customDestructiveAnimationPresenter = CustomDestructiveAnimationPresenter()
-
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         return customDestructiveAnimationPresenter
