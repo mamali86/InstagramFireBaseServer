@@ -21,7 +21,9 @@ class CommentViewController: UICollectionViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Comments"
-        collectionView?.backgroundColor = .red
+        collectionView?.backgroundColor = .white
+        collectionView?.alwaysBounceVertical = true
+        collectionView?.keyboardDismissMode = .interactive
         
         collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
@@ -45,6 +47,13 @@ class CommentViewController: UICollectionViewController, UICollectionViewDelegat
         let commentField = UITextField()
         commentField.placeholder = "Comment here"
         return commentField
+        
+    }()
+    
+    let lineView: UIView = {
+        let lineView = UIView()
+        lineView.backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230)
+        return lineView
         
     }()
     
@@ -79,10 +88,9 @@ class CommentViewController: UICollectionViewController, UICollectionViewDelegat
 
         Database.database().reference().child("Comment").child(postID).observe(.childAdded, with: { (snapshot) in
             guard let commentsDictionary = snapshot.value as?[String: Any] else {return}
-            var comment = Comment(dictionary: commentsDictionary)
             
-            let user = Database.getUserInfo(uid: uid, completion: { (user) in
-                comment.user = user
+             Database.getUserInfo(uid: uid, completion: { (user) in
+                let comment = Comment(user: user, dictionary: commentsDictionary)
                 self.comments.append(comment)
                 self.collectionView?.reloadData()
             })
@@ -97,7 +105,18 @@ class CommentViewController: UICollectionViewController, UICollectionViewDelegat
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let dummyCell = CommentCell(frame: frame)
+        dummyCell.comment = comments[indexPath.item]
+        dummyCell.layoutIfNeeded()
+        
+        let targetSize = CGSize(width: view.frame.width, height: 1000)
+        let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
+        
+        let height = max(40 + 8 + 8, estimatedSize.height)
+        
+        return CGSize(width: view.frame.width, height: height)
     }
     
     
@@ -117,14 +136,22 @@ class CommentViewController: UICollectionViewController, UICollectionViewDelegat
         containerView.frame = CGRect(x: 0, y: 0, width: 150, height: 60)
         containerView.addSubview(commentTextFiled)
         containerView.addSubview(submitButton)
+        containerView.addSubview(lineView)
+        
 
         commentTextFiled.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: submitButton.leftAnchor, paddingTop: 0, paddingLeft: 12, paddingBottom: 12, paddingRight: 0, width: 0, height: 0)
         
         submitButton.anchor(top: containerView.topAnchor, left: nil, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 12, paddingRight: 0, width: 50, height: 0)
         
+        lineView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
+        
         return containerView
         
     }()
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0 
+    }
 
     override var inputAccessoryView: UIView? {
         get {
