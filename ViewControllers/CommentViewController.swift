@@ -106,6 +106,8 @@ class CommentViewController: UICollectionViewController, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        //Dynamic Cell Sizing
+        
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         let dummyCell = CommentCell(frame: frame)
         dummyCell.comment = comments[indexPath.item]

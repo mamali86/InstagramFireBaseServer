@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "View/UserProfileHeaderCell.swift"
-            timestampString = "547635888.200662"
+            timestampString = "549447158.8937401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "13"
@@ -218,13 +218,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllers/Camera/CameraViewController.swift"
-            timestampString = "549360186.4775259"
+            timestampString = "549457994.054795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
             endingLineNumber = "41"
-            landmarkName = "CameraViewController"
-            landmarkType = "3">
+            landmarkName = "animationController(forPresented:presenting:source:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -234,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllers/CommentViewController.swift"
-            timestampString = "549360186.4776551"
+            timestampString = "549826501.474214"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "83"
@@ -250,12 +250,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllers/CommentViewController.swift"
-            timestampString = "549360186.4783289"
+            timestampString = "549826501.474279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "82"
             endingLineNumber = "82"
             landmarkName = "handleSubmit()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewControllers/HomeViewController.swift"
+            timestampString = "549833394.617663"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "fetchUserPosts(user:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in InstagramSampleApp.HomeViewController.(fetchUserPosts in _40C20E2CC3364BBAB8272A58239ECA09)(user: InstagramSampleApp.UserInfo) -&gt; ()"
+                  moduleName = "InstagramSampleApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammadfarhoudi/Desktop/InstagramSampleApp/ViewControllers/HomeViewController.swift"
+                  timestampString = "549652234.186528"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "891">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String, Any) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in InstagramSampleApp.HomeViewController.(fetchUserPosts in _40C20E2CC3364BBAB8272A58239ECA09)(user: InstagramSampleApp.UserInfo) -&gt; ()"
+                  moduleName = "InstagramSampleApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammadfarhoudi/Desktop/InstagramSampleApp/ViewControllers/HomeViewController.swift"
+                  timestampString = "549652234.18934"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "63">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewControllers/HomeViewController.swift"
+            timestampString = "549833394.618085"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "fetchUserPosts(user:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewControllers/HomeViewController.swift"
+            timestampString = "549833394.618629"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "fetchUserPosts(user:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

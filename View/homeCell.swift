@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 protocol homeCellDelegate {
     func didTapComment(post: captionPost)
+    func didLike(for cell: homeCell)
 }
 
 class homeCell: UICollectionViewCell {
@@ -24,7 +26,9 @@ class homeCell: UICollectionViewCell {
             userNameLabel.text = post?.user?.username
             guard let profleImage = post?.user?.profileImageUrl else {return}
             profileImageView.loadImage(urlstring: profleImage)
-//            captionLabel.text = post?.caption
+            
+            likeButton.setImage(post?.hasliked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
+            
             setupCaptionText()
             
         }
@@ -48,7 +52,6 @@ class homeCell: UICollectionViewCell {
          captionLabel.attributedText = attributedText
 //         captionLabel.text = post?.caption
 
-        
     }
     
     let userNameLabel: UILabel = {
@@ -86,9 +89,10 @@ class homeCell: UICollectionViewCell {
         return button
     }()
     
-    let likeButton: UIButton = {
+    lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
         return button
     }()
     
@@ -154,6 +158,15 @@ class homeCell: UICollectionViewCell {
         guard let post = post else {return}
         delegate?.didTapComment(post: post)
     
+    }
+    
+
+    
+    @objc fileprivate func handleLike(){
+    
+        delegate?.didLike(for: self)
+
+                
     }
     
     fileprivate func setUpActionButtons() {

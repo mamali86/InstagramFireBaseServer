@@ -16,6 +16,7 @@ struct captionPost {
     let caption: String
     let postDate: Date
     var id: String?
+    var hasliked = false
     
     
     init(user: UserInfo, dictionary: [String: Any]) {

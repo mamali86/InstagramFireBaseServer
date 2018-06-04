@@ -11,6 +11,8 @@ import Firebase
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, homeCellDelegate {
 
+    
+
     let cellID = "cellID"
     var posts = [captionPost]()
     override func viewDidLoad() {
@@ -57,13 +59,32 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     @objc fileprivate func handleRefresh(){
         
-        print("refresh bro..")
         posts.removeAll()
-
         fetchAllPosts()
         
     }
     
+    func didLike(for cell: homeCell) {
+        
+        guard let indexPath = collectionView?.indexPath(for: cell) else {return}
+        var post = posts[indexPath.item]
+        
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        guard let postID = post.id else{return}
+
+        let dictionaryValue = [uid: post.hasliked == true ? 0 : 1]
+        
+        Database.database().reference().child("Likes").child(postID).updateChildValues(dictionaryValue) { (err, ref) in
+                    if let err = err {
+                        print("Failed to save like info into db", err)
+                        return
+                    }
+            post.hasliked = !post.hasliked
+            
+            self.posts[indexPath.item] = post
+            self.collectionView?.reloadItems(at: [indexPath])
+                }
+    }
     
     fileprivate func fetchAllPosts(){
         fetchPost()
@@ -84,9 +105,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                 }
                 
             })
-            
-          
-            
             
         }) { (err) in
             print("Error Finding Followers")
@@ -114,28 +132,49 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     fileprivate func fetchUserPosts(user: UserInfo){
         
         guard let uid = user.uid else {return}
-        
+
         Database.database().reference().child("Caption").child(uid).observeSingleEvent(of: .value) { (snapshot) in
                 
                 guard let dictionaries = snapshot.value as? [String: Any] else {return}
             
+            
             self.collectionView?.refreshControl?.endRefreshing()
-                
                 dictionaries.forEach({ (key,value) in
                     guard let dictionary = value as? [String: Any] else {return}
+
                     var post = captionPost(user: user, dictionary: dictionary)
                     post.id = key
-                    self.posts.append(post)
-                })
-            
-            //Ordering Posts
-            self.posts.sort(by: { (p1, p2) -> Bool in
-                return p1.postDate.compare(p2.postDate) == .orderedDescending
+                    
+                    guard let currentUid = Auth.auth().currentUser?.uid else {return}
+                    Database.database().reference().child("Likes").child(key).child(currentUid).observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        
+                        if let value = snapshot.value as? Int, value == 1 {
+                            post.hasliked = true
+                        }
+                        else{
+                            post.hasliked = false
+                        }
+                        
+                        self.posts.append(post)
+                        //Ordering Posts
+                        self.posts.sort(by: { (p1, p2) -> Bool in
+                            return p1.postDate.compare(p2.postDate) == .orderedDescending
+
+  })
+                        self.collectionView?.reloadData()
+
+                        
+                    }, withCancel: { (err) in
+              
+                            print("Failed to fetch like info for post", err)
+
+                    })
+
+
             })
-                
-                self.collectionView?.reloadData()
+
             }
-        
     }
     
     
