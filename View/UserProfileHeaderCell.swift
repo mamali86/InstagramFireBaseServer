@@ -8,8 +8,18 @@
 
 import UIKit
 import Firebase
+
+protocol userProfileHeaderDelegate {
+    func didTapListView()
+    func didTapGridView()
+   
+}
+
 class UserProfileHeaderCell: UICollectionViewCell {
     
+
+    var delegate: userProfileHeaderDelegate?
+
     var user: UserInfo? {
     didSet {
         guard let profileImageUrl = user?.profileImageUrl else {return}
@@ -99,11 +109,6 @@ class UserProfileHeaderCell: UICollectionViewCell {
     }
     
 
-
- 
-    
-    
-    
     let profileImage: CustomImageView = {
         let image = CustomImageView()
         return image
@@ -117,18 +122,36 @@ class UserProfileHeaderCell: UICollectionViewCell {
         
     }()
     
-    let listButton: UIButton = {
+    lazy var listButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "list"), for: .normal)
+        button.addTarget(self, action: #selector(handleListAction), for: .touchUpInside)
         button.tintColor = UIColor(white: 0, alpha: 0.1)
         return button
     }()
     
-    let gridButton: UIButton = {
+    lazy var gridButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "grid").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "grid"), for: .normal)
+        button.addTarget(self, action: #selector(handleGridAction), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleListAction(){
+        
+        listButton.tintColor = UIColor.getBlue()
+        gridButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        delegate?.didTapListView()
+        
+    }
+    
+    @objc func handleGridAction() {
+    
+        gridButton.tintColor = UIColor.getBlue()
+        listButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        delegate?.didTapGridView()
+    
+    }
     
     
     let bookMarkButton: UIButton = {
