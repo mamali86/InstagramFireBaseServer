@@ -12,7 +12,6 @@ import Firebase
 
 class UserProfileViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, userProfileHeaderDelegate {
 
-    
     let headerId = "headerId"
     let cellId = "cellID"
     let listCellId = "listCellId"
@@ -40,46 +39,47 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         guard let currentUserID = self.user?.uid else {return}
         
         let ref = Database.database().reference().child("Caption").child(currentUserID)
-        var querry = ref.queryOrderedByKey()
+//        var querry = ref.queryOrderedByKey()
+        var querry = ref.queryOrdered(byChild: "creationDate")
         
         if posts.count > 0 {
-        let value = self.posts.last?.id
-        querry = querry.queryStarting(atValue: value).queryLimited(toFirst: 2)
+//        let value = self.posts.last?.id
+            
+            let value = self.posts.last?.postDate.timeIntervalSince1970
+        querry = querry.queryEnding(atValue: value)
         }
         
-        querry.observeSingleEvent(of: .value, with: { (snapshot) in
+        querry.queryLimited(toLast: 4).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let user = self.user else {return}
+            guard var allObjects = snapshot.children.allObjects as? [DataSnapshot] else {return}
             
-            var allObjects = snapshot.children.allObjects as! [DataSnapshot]
-            
-            if allObjects.count < 2 {
-                
+            if allObjects.count < 4 {
                 self.isFinishedPaging = true
             }
             
-            if self.posts.count > 0 {
-
+            allObjects.reverse()
+            if self.posts.count > 0 && allObjects.count > 0 {
             allObjects.removeFirst()
-            
             }
+            
             allObjects.forEach({ (snapShot) in
-                
-                guard let dictionary = snapShot.value else {return}
-                var post = captionPost(user: user, dictionary: dictionary as! [String : Any])
+                guard let dictionary = snapShot.value as? [String: Any] else {return}
+                var post = captionPost(user: user, dictionary: dictionary)
                 post.id = snapShot.key
-                
                 self.posts.append(post)
-                self.collectionView?.reloadData()
             })
             
+            self.posts.forEach({ (post) in
+                print(post.id ?? "")
+            })
+            
+            self.collectionView?.reloadData()
 
             
         }) { (err) in
-            
             print("failed to fetch posts through pagination", err)
         }
-        
     }
     
     fileprivate func fetchOrderedPosts() {
@@ -89,11 +89,9 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
             
             guard let dictionary = snapshot.value as? [String: Any] else {return}
-
             guard let user = self.user else {return}
             let post = captionPost(user: user, dictionary: dictionary)
             self.posts.insert(post, at: 0)
-
 //            self.posts.append(post)
             self.collectionView?.reloadData()
             
@@ -143,10 +141,10 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
  
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        
-        if indexPath.item < self.posts.count - 1 && !isFinishedPaging {
+
+        if indexPath.item == self.posts.count - 1 && !isFinishedPaging {
             dataPagination()
-          
+
         }
         
         if isGridView{
@@ -161,10 +159,8 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
             return cell
             
         }
-        
-    
-            
     }
+    
     
     func didTapListView() {
         isGridView = false
@@ -214,7 +210,7 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
  
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: 300)
+        return CGSize(width: view.frame.width, height: 200)
     }
     
     fileprivate func fetchUsers(){
@@ -227,10 +223,7 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
             self.collectionView?.reloadData()
 //            self.fetchOrderedPosts()
             
-            
             self.dataPagination()
-            
-
         }
 
 
