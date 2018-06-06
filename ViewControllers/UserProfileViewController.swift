@@ -20,6 +20,7 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
     
     var user: UserInfo?
     var posts =  [captionPost]()
+    var isFinishedPaging = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,54 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         
         setUpNavigationItems()
         fetchUsers()
+    }
+    
+    
+    fileprivate func dataPagination() {
+        
+        guard let currentUserID = self.user?.uid else {return}
+        
+        let ref = Database.database().reference().child("Caption").child(currentUserID)
+        var querry = ref.queryOrderedByKey()
+        
+        if posts.count > 0 {
+        let value = self.posts.last?.id
+        querry = querry.queryStarting(atValue: value).queryLimited(toFirst: 2)
+        }
+        
+        querry.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let user = self.user else {return}
+            
+            var allObjects = snapshot.children.allObjects as! [DataSnapshot]
+            
+            if allObjects.count < 2 {
+                
+                self.isFinishedPaging = true
+            }
+            
+            if self.posts.count > 0 {
+
+            allObjects.removeFirst()
+            
+            }
+            allObjects.forEach({ (snapShot) in
+                
+                guard let dictionary = snapShot.value else {return}
+                var post = captionPost(user: user, dictionary: dictionary as! [String : Any])
+                post.id = snapShot.key
+                
+                self.posts.append(post)
+                self.collectionView?.reloadData()
+            })
+            
+
+            
+        }) { (err) in
+            
+            print("failed to fetch posts through pagination", err)
+        }
+        
     }
     
     fileprivate func fetchOrderedPosts() {
@@ -46,14 +95,12 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
             self.posts.insert(post, at: 0)
 
 //            self.posts.append(post)
-            
             self.collectionView?.reloadData()
             
         }) { (err) in
             print("failed to fetch posts orderly", err)
         }
     }
-    
     
 
     fileprivate func setUpNavigationItems() {
@@ -96,6 +143,12 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
  
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        
+        if indexPath.item < self.posts.count - 1 && !isFinishedPaging {
+            dataPagination()
+          
+        }
+        
         if isGridView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! postCell
             
@@ -110,6 +163,7 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         }
         
     
+            
     }
     
     func didTapListView() {
@@ -171,7 +225,11 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
             self.user = user
             self.navigationItem.title =  user.username
             self.collectionView?.reloadData()
-            self.fetchOrderedPosts()
+//            self.fetchOrderedPosts()
+            
+            
+            self.dataPagination()
+            
 
         }
 

@@ -17,7 +17,6 @@ class imageSelectionHeader: UICollectionViewCell {
         image.clipsToBounds = true
         image.backgroundColor = .purple
         return image
-        
     }()
     
     override init(frame: CGRect) {

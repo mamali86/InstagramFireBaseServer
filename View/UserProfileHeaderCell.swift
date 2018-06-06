@@ -139,7 +139,7 @@ class UserProfileHeaderCell: UICollectionViewCell {
     
     @objc func handleListAction(){
         
-        listButton.tintColor = UIColor.getBlue()
+        listButton.tintColor = .getBlue()
         gridButton.tintColor = UIColor(white: 0, alpha: 0.2)
         delegate?.didTapListView()
         
@@ -147,7 +147,7 @@ class UserProfileHeaderCell: UICollectionViewCell {
     
     @objc func handleGridAction() {
     
-        gridButton.tintColor = UIColor.getBlue()
+        gridButton.tintColor = .getBlue()
         listButton.tintColor = UIColor(white: 0, alpha: 0.2)
         delegate?.didTapGridView()
     
