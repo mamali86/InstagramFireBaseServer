@@ -8,9 +8,10 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     var routerMananger: RouteManager?
@@ -21,7 +22,66 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         routerMananger = RouteManager(window: window!)
         routerMananger?.startWithMainTabBarController()
+        
+        
+        attemptRegisterForNotifications(application: application)
+        
+        
         return true
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Registered with FCM", fcmToken)
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        
+        print("Registered for Notiofications", deviceToken)
+        
+    }
+    
+    
+    
+    
+    private func attemptRegisterForNotifications(application: UIApplication) {
+        
+        print("Attempting to register for notifications")
+        
+        Messaging.messaging().delegate = self
+        
+        
+        UNUserNotificationCenter.current().delegate = self
+        
+        //User Notification Authorization
+        
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
+            if let err = error {
+                
+                print("Failed to request auth", err)
+                return
+            }
+            
+            if granted {
+                print("auth granted")
+            } else {
+                print("auth denied")
+            }
+            
+            
+        }
+        
+        application.registerForRemoteNotifications()
+    }
+    
+    
+    
+    //listen for user notifications, so it shows up inside the app as well
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

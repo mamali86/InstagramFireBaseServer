@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6FA57CFDB145E343955637E963945E32"
+               BlueprintIdentifier = "749E0CBC00D838F786964E462E90B107"
                BuildableName = "Pods_InstagramSampleApp_InstagramSampleAppUITests.framework"
                BlueprintName = "Pods-InstagramSampleApp-InstagramSampleAppUITests"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -37,7 +36,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -47,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6FA57CFDB145E343955637E963945E32"
+            BlueprintIdentifier = "749E0CBC00D838F786964E462E90B107"
             BuildableName = "Pods_InstagramSampleApp_InstagramSampleAppUITests.framework"
             BlueprintName = "Pods-InstagramSampleApp-InstagramSampleAppUITests"
             ReferencedContainer = "container:Pods.xcodeproj">
