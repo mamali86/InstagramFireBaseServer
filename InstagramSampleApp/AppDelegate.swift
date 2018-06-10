@@ -36,12 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
-        
         print("Registered for Notiofications", deviceToken)
         
     }
-    
-    
     
     
     private func attemptRegisterForNotifications(application: UIApplication) {
@@ -49,28 +46,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         print("Attempting to register for notifications")
         
         Messaging.messaging().delegate = self
-        
-        
         UNUserNotificationCenter.current().delegate = self
         
         //User Notification Authorization
         
         let options: UNAuthorizationOptions = [.alert, .badge, .sound]
-        
         UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
             if let err = error {
-                
                 print("Failed to request auth", err)
                 return
             }
-            
             if granted {
                 print("auth granted")
             } else {
                 print("auth denied")
             }
-            
-            
         }
         
         application.registerForRemoteNotifications()

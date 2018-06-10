@@ -13,7 +13,8 @@ target 'InstagramSampleApp' do
    pod 'Firebase/Database'
    pod  'Firebase/Storage'
    pod  'Firebase/Messaging'
-
+   pod 'RxSwift',    '~> 4.0'
+   pod 'RxCocoa',    '~> 4.0'
 
   target 'InstagramSampleAppTests' do
     # Pods for testing
